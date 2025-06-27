@@ -1,7 +1,7 @@
 <details>
     <summary>📄 <strong>README.md</strong> (click to expand)</summary>
 
-# 🚨 Twilio Emergency Call Alerting System (POC)
+# 🚨 Call Alerting System (POC)
 
 A production-ready Python-based monitoring system that continuously checks for emergency call volume threshold breaches in real time, using data from an Elasticsearch instance. Alerts are sent to Slack and email channels.
 
@@ -20,7 +20,7 @@ A production-ready Python-based monitoring system that continuously checks for e
 ## 📁 Project Structure
 
 ```
-twilio-alerts/
+call-threshold-checker-alert-system/
 │
 ├── app/
 │   ├── config.py
@@ -34,8 +34,7 @@ twilio-alerts/
 ├── scheduler.py
 ├── requirements.txt
 ├── Dockerfile
-├── .env               # Keep this local (NEVER commit)
-├── .env.example       # Share this instead
+├── .env.example       
 ├── docker-compose.yml
 └── es-data/           # Elasticsearch volume mount
 ```
@@ -48,7 +47,7 @@ twilio-alerts/
 
 ```bash
 git clone https://github.com/yourusername/twilio-alerts.git
-cd twilio-alerts
+cd call-threshold-checker-alert-system
 ```
 
 ### 2. Create `.env` File
