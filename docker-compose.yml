@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
+    container_name: es-container
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - ./es-data:/usr/share/elasticsearch/data
+    networks:
+      - container-net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.28
+    container_name: kibana-container
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - twilio-net
+
+  call-threshold-checker-alert-system:
+    build:
+      context: .
+    container_name: call-threshold-checker-alert-system-app
+    env_file:
+      - .env
+    volumes:
+      - ./app/cron_output.log:/app/cron_output.log
+    depends_on:
+      - elasticsearch
+    networks:
+      - container-net
+
+networks:
+  container-net:
+    driver: bridge

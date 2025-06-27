@@ -1,0 +1,9 @@
+```gitignore
+.env
+*.log
+es-data/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
